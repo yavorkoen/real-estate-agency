@@ -1,15 +1,18 @@
 const express = require('express');
-const path = require('path');
+const { initDatabase } = require('./config/databaseConfig.js');
 
 const app = express();
-const port = 5000;
+const { PORT } = require('./constants.js');
 
-app.use('/static', express.static(path.join(__dirname, 'public')));
 
 require('./config/hbsConfig.js')(app);
+require('./config/expressConfig.js')(app);
 
-app.get('/', (req, res) => {
-    res.render('home', {layout: false});
-});
 
-app.listen(port, () => console.log('App running on port ' + port + '...' ));
+initDatabase()
+    .then(() => {
+        app.listen(PORT, () => console.log('App running on port ' + PORT + '...' ));
+    })
+    .catch(error => {
+        console.log(error);
+    });
