@@ -5,25 +5,37 @@ router.get('/login', (req, res) => {
     res.render('auth/login');
 });
 
+router.post('/login', async (req, res) => {
+    let { username, password } = req.body;
+
+    try{
+        await authService.login(username, password);
+        res.redirect('/');
+    }catch(error) {
+        console.log(error);
+        //TODO return error
+    }
+})
+
 router.get('/register', (req, res) => {
     res.render('auth/register');
 });
 
 router.post('/register', async (req, res) => {
     let { name, username, password, repeatPassword } = req.body;
-    try{
-        if(password !== repeatPassword){
-            res.locals.error = 'Password mismatch';
-            res.render('auth/register');
-        } else {
-            await authService.register({ name, username, password, repeatPassword });
-            res.redirect('/');
-        }
-    }catch(error) {
-        console.log(error);
+
+    if (password !== repeatPassword) {
+        res.locals.error = 'Password mismatch';
+        return res.render('auth/register');
     }
 
-
+    try {
+        await authService.register({ name, username, password, repeatPassword });
+        res.redirect('/');
+    } catch (error) {
+        console.log(error);
+        //Return error
+    }
 })
 
 

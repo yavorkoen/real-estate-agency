@@ -1,4 +1,3 @@
-const { MongoServerSelectionError } = require('mongodb');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -24,6 +23,10 @@ userSchema.pre('save', function (next) {
             next();
         })
         .catch(error => console.log(error));
+});
+
+userSchema.static('findByUsername', function(username){
+    return this.findOne({username});
 });
 
 userSchema.method('validatePassword', function(password){
