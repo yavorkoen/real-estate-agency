@@ -19,7 +19,9 @@ exports.login = function (username, password) {
                 throw { message: 'Incorrect username or password' }
             }
         })
-        .catch(error => console.log(error));
+        // .catch(error => {
+        //     // console.log(error);
+        // });
 }
 
 exports.register = (userData) => {

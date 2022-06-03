@@ -5,8 +5,8 @@ const app = express();
 const { PORT } = require('./constants.js');
 
 
-require('./config/hbsConfig.js')(app);
 require('./config/expressConfig.js')(app);
+require('./config/hbsConfig.js')(app);
 
 
 initDatabase()
