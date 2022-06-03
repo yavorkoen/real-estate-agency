@@ -1,4 +1,6 @@
+const jwt = require('../utils/jwt.js');
 const User = require('../models/User.js');
+const { SECRET } = require('../constants.js');
 
 exports.login = function (username, password) {
 
@@ -23,4 +25,14 @@ exports.login = function (username, password) {
 exports.register = (userData) => {
 
     return User.create(userData);
+}
+
+exports.createToken = async (user) => {
+
+    let token = await jwt.sign(
+        { _id: user._id, name: user.name, username: user.username },
+        SECRET,
+        { expiresIn: '1h' },
+    )
+    return token;
 }
