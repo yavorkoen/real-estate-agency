@@ -16,7 +16,7 @@ router.get('/housings', (req, res) => {
 router.post('/create', async (req, res) => {
     let housingData = req.body;
     await create({ ...housingData, owner: req.user._id });
-    res.redirect('/housings');
+    res.redirect('/housing/housings');
 
 })
 
