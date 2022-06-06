@@ -1,8 +1,11 @@
 const router = require('express').Router();
+const { getLastThree } = require('../services/housingService.js'); 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     console.log(req.user);
-    res.render('home');
+    let housings = await getLastThree();
+    res.render('home', { housings });
+
 });
 
 

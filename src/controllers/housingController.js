@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Housing = require('../models/Housing.js');
-const { create } = require('../services/createService.js');
+const { create } = require('../services/housingService.js');
 const { isAuth } = require('../middlwares/authMiddleware.js');
 
 

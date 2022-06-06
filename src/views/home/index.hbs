@@ -15,8 +15,15 @@
                 <h1>Top Houses</h1>
                 <div class="houses">
 
+                    {{#each housings}}
+                     {{>cardHome}}
+                     {{else}}
+                     <div class="no-data-container">
+                        <p class="no-data">There are no housing offers found...</p>
+                    </div>
+                     {{/each}}
 
-                    <div class="card-home">
+                   {{!-- <div class="card-home">
                         <h2>Real House Luxury Villa</h2>
                         <div class="cta-container"><a href="#" class="details-link">Details</a></div>
                         <div class="card_image"><img src="./static/images/5.jpg"></div>
@@ -35,7 +42,7 @@
                         <div class="cta-container"><a href="#" class="details-link">Details</a></div>
                         <div class="card_image"><img src="./static/images/apartments.jpg"></div>
 
-                    </div>
+                    </div>  --}}
 
                     <!-- If there are still no offers for housing in the database display: -->
                     <!--<div class="no-data-container">
