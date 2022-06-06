@@ -40,7 +40,12 @@ router.post('/register', async (req, res) => {
         console.log(error);
         //Return error
     }
-})
+});
+
+router.get('/logout', (req, res) => {
+    res.clearCookie(AUTH_COOKIE_NAME);
+    res.redirect('/');
+});
 
 
 

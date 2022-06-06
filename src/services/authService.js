@@ -1,6 +1,7 @@
 const jwt = require('../utils/jwt.js');
 const User = require('../models/User.js');
 const { SECRET } = require('../constants.js');
+const { deleteOne } = require('../models/User.js');
 
 exports.login = function (username, password) {
 
@@ -22,12 +23,12 @@ exports.login = function (username, password) {
         .catch(error => {
             console.log(error);
         });
-}
+};
 
 exports.register = (userData) => {
 
     return User.create(userData);
-}
+};
 
 exports.createToken = async (user) => {
 
@@ -37,4 +38,8 @@ exports.createToken = async (user) => {
         { expiresIn: '1h' },
     )
     return token;
+};
+
+exports.logout = async (id) => {
+    
 }

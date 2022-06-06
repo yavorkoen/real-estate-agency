@@ -10,6 +10,7 @@ exports.auth = (req, res, next) => {
             .then(decodedToken => {
                 //create property user of the req obj
                 req.user = decodedToken;
+                res.locals.user = decodedToken;
                 next();
             })
             .catch(error => {
