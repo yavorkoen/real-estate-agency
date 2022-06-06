@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Housing = require('../models/Housing.js');
-const { create } = require('../services/housingService.js');
+const { create, getHousings } = require('../services/housingService.js');
 const { isAuth } = require('../middlwares/authMiddleware.js');
 
 
@@ -8,8 +8,9 @@ router.get('/create', isAuth, (req, res) => {
     res.render('housing/create');
 });
 
-router.get('/housings', (req, res) => {
-    res.render('housing/housings');
+router.get('/housings', async (req, res) => {
+    let housings = await getHousings();
+    res.render('housing/housings', { housings });
 });
 
 

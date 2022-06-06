@@ -1,22 +1,27 @@
+<div id="box">
 
-
-    <div id="box">
-
-        <!-- In case of error, you should display div with class "errorContainer" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-        <!--
+    <!-- In case of error, you should display div with class "errorContainer" -->
+    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+    <!--
         <div>
             <div class="errorContainer">
                 <p>Error</p>
             </div>
         </div>-->
-        <main>
+    <main>
 
-            <section id="all-listings">
-                <h1>Apartments for rent</h1>
-                <!-- If there are offers for housing in the database display each of them -->
+        <section id="all-listings">
+            <h1>Apartments for rent</h1>
+            <!-- If there are offers for housing in the database display each of them -->
 
-                <div class="card">
+            {{#each housings}}
+            {{>cardHousing}}
+            {{else}}
+            <div class="no-data-listing">
+                <p class="no-offer">There are no housing offers found...</p>
+            </div>
+            {{/each}}
+                {{!-- <div class="card">
                     <h3>Real House Luxury Villa</h3>
                     <p>Spacious and grand villa, 3 bedroom, 2 bath.</p>
 
@@ -38,14 +43,14 @@
                     <div class="cta-container"><a href="#" class="det-link">Details</a></div>
                     <div class="card_circle"><img src="./static/images/apartments.jpg"></div>
 
-                </div>
+                </div> --}}
 
                 <!-- If there are still no offers for housing in the database display: -->
                 <!--<div class="no-data-listing">
                     <p class="no-offer">There are no housing offers found...</p>
                 </div>-->
 
-            </section>
-        </main>
+        </section>
+    </main>
 
-    </div>
+</div>

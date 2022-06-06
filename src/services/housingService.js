@@ -6,3 +6,5 @@ exports.create = (housingData) => {
 
 exports.getLastThree = () => Housing.find().sort({createdAt: -1}).limit(3).lean();
 
+exports.getHousings = () => Housing.find().lean();
+
