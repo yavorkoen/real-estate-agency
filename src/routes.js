@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const homeContoller = require('./controllers/homeController.js');
 const authContoller = require('./controllers/authController.js');
-const createController = require('./controllers/createController.js');
-const { isAuth } = require('./middlwares/authMiddleware.js');
+const housingController = require('./controllers/housingController.js');
 
 router.use(homeContoller);
 router.use(authContoller);
-router.use('/offers', isAuth, createController);
+router.use('/housing', housingController);
 
 module.exports = router;
