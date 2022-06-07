@@ -13,7 +13,7 @@
             <section id="deatils-page">
                 <div class="wrapper">
                     <div class="product-img">
-                        <img src={{image}}>
+                        <img src={{imageUrl}}>
                     </div>
                     <div class="product-info">
                         <div class="product-text">
@@ -25,26 +25,35 @@
                                 <p>Description: {{description}}</p>
 
                                 <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
-                                <p>People rented this housing: Alex Petkov, Ivan Dobrev</p>
+                                {{#if tenants}}
+                                <p>People rented this housing: {{tenants}}</p>
 
                                 <!-- If not display: -->
+                                {{else}}
                                 <p>People rented this housing: There are no tenants yet.</p>
+                                {{/if}}
+                               
                             </div>
                         </div>
-
+            
                         <!-- if there is no registered user, do not display buttons-->
+                        {{#if isUser}}
                         <div class="product-btn">
                             <!-- Only for registered user and creator of the housing offer-->
-                            <a href="#" class="edit">Edit</a>
-                            <a href="#" class="remove">Delete</a>
-                            
+                            {{#if isOwner}}
+                            <a href="/housing/{{_id}}/edit" class="edit">Edit</a>
+                            <a href="/housing/{{_id}}/delete" class="remove">Delete</a>
+                            {{else if isTenant}}
                             <!-- logged in user with available pieces-->
-                            <a href="#" class="rentHome">Rent a home, available 2 housing</a>
                             <p class="alRentHome">You have already rent this home</p>
-
+                            {{else if isAvailable}}
+                            <a href="/housing/{{_id}}/rent" class="rentHome">Rent a home, available {{availablePieces}} housing</a>
                             <!-- logged in user with no available pieces-->
+                            {{else}}
                             <p class="no-housing">No Housing Available!</p>
+                            {{/if}}
                         </div>
+                        {{/if}}
                     </div>
                 </div>
             </section>
