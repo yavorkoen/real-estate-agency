@@ -17,6 +17,5 @@ exports.addTenantReduceAvailability = async (housingId, userId) => {
 
 exports.deleteHousing = (id) => Housing.findByIdAndDelete(id);
 
-exports.update = (updateData, housing) => {
-   
-}
+exports.update = (id, updateData) => Housing.findByIdAndUpdate(id, updateData);
+      

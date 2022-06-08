@@ -27,7 +27,16 @@ exports.auth = (req, res, next) => {
 exports.isAuth = (req, res, next) => {
     if (req.user) {
         next();
-    } else { 
+    } else {
         res.redirect(404, '/login');
     }
 }
+
+exports.isGuest = (req, res, next) => {
+    if (!req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
+
